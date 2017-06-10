@@ -13,8 +13,6 @@ public class PaymentQueries {
     public static void paymentQuery(String column) {
         Connection connection = DbUtil.getConnection();
 
-        ArrayList<String> queryResult = new ArrayList();
-
         try {
             Statement statement = connection.createStatement();
 
