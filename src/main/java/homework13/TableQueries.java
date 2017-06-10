@@ -25,4 +25,34 @@ public class TableQueries {
         }
 
     }
+
+    // rekord törlése
+    public static void deleteRecord(String tableName, String deleteCondition) {
+        Connection connection = DbUtil.getConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate("DELETE FROM " + tableName + " WHERE " + deleteCondition);
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // ha az egész táblát szeretnénk törölni
+    public static void deleteRecord(String tableName) {
+        Connection connection = DbUtil.getConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate("DELETE FROM " + tableName);
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
