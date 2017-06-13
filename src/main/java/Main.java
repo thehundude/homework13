@@ -9,6 +9,7 @@ public class Main {
         // PaymentQueries.paymentQuery("amount");
         /* TableQueries.createTable("test_table", "test_column", "int", "NOT NULL",
                 "another_test_column", "text", ""); */
-        TableQueries.deleteRecord("test_table", "test_column = 1");
+        TableQueries.createTable("test_table", "TestColumn int NOT NULL,AnotherTestColumn text,ThirdTestColumn boolean DEFAULT TRUE");
+        // TableQueries.deleteRecord("test_table", "test_column = 1");
     }
 }

@@ -17,13 +17,42 @@ public class TableQueries {
             Statement statement = connection.createStatement();
 
             statement.executeUpdate("CREATE TABLE " + tableName + " (" + column1Name + " " + column1DataType + " " +
-            column1Constraint + ", " + column2Name + " " +column2DataType + " " + column2Constraint + ");");
+                    column1Constraint + ", " + column2Name + " " + column2DataType + " " + column2Constraint + ");");
 
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
+    }
+
+    // nem épp elegáns, de egy egész, egybe írt stringből szedi szét az oszlopokat
+    public static void createTable(String tableName, String columnInfo) {
+        String[] columns = columnInfo.split(",");
+        String sqlString = "CREATE TABLE " + tableName + " (\n";
+
+        for (int i = 0; i < columns.length; i++) {
+            sqlString = sqlString + columns[i];
+            if (i != columns.length - 1) {
+                sqlString += ",\n";
+            }
+        }
+
+        sqlString += "\n);";
+
+        Connection connection = DbUtil.getConnection();
+
+        try {
+            Statement statement = connection.createStatement();
+
+            statement.executeUpdate(sqlString);
+
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.print("Tábla létrehozva.");
     }
 
     // rekord törlése
